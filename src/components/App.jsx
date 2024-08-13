@@ -28,6 +28,11 @@ function App() {
     setItems([]);
   };
 
+  const handleRemoveItem = (id) => {
+    const newItems = items.filter((item) => item.id !== id);
+    setItems(newItems);
+  };
+
   const handlemarkAllAsUnPacked = () => {
     const newItems = items.map((item) => ({ ...item, packed: false }));
     setItems(newItems);
@@ -37,12 +42,26 @@ function App() {
     setItems(initialItems);
   };
 
+  const handlePackedToggle = (id) => {
+    const newItems = items.map((item) => {
+      if (item.id === id) {
+        return { ...item, packed: !item.packed };
+      }
+      return item;
+    });
+    setItems(newItems);
+  };
+
   return (
     <>
       <BackgroundHeading />
       <main>
         <Header />
-        <ItemList items={items} />
+        <ItemList
+          items={items}
+          handleRemoveItem={handleRemoveItem}
+          handlePackedToggle={handlePackedToggle}
+        />
         <Sidebar
           handleAddItem={handleAddItem}
           markAllAsPacked={markAllAsPacked}
