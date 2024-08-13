@@ -6,20 +6,23 @@ export default function ButtonGroup({
   handlemarkAllAsUnPacked,
   handleResetToInitial,
 }) {
+  const secondaryButtons = [
+    { text: 'Mark all as complete', onClick: markAllAsPacked },
+    { text: 'Mark all as incomplete', onClick: handlemarkAllAsUnPacked },
+    { text: 'Reset to initial', onClick: handleResetToInitial },
+    { text: 'Remove all items', onClick: handleRemoveAllItems },
+  ];
   return (
     <section className="button-group">
-      <Button buttonType="secondary" onClick={markAllAsPacked}>
-        Mark all as complete
-      </Button>
-      <Button buttonType="secondary" onClick={handlemarkAllAsUnPacked}>
-        Mark all as incomplete
-      </Button>
-      <Button buttonType="secondary" onClick={handleResetToInitial}>
-        Reset to initial
-      </Button>
-      <Button buttonType="secondary" onClick={handleRemoveAllItems}>
-        Remove all items
-      </Button>
+      {secondaryButtons.map(({ text, onClick }) => (
+        <Button
+          key={text + onClick.toString()}
+          buttonType="secondary"
+          onClick={onClick}
+        >
+          {text}
+        </Button>
+      ))}
     </section>
   );
 }
