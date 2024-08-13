@@ -24,6 +24,19 @@ function App() {
     setItems(newItems);
   };
 
+  const handleRemoveAllItems = () => {
+    setItems([]);
+  };
+
+  const handlemarkAllAsUnPacked = () => {
+    const newItems = items.map((item) => ({ ...item, packed: false }));
+    setItems(newItems);
+  };
+
+  const handleResetToInitial = () => {
+    setItems(initialItems);
+  };
+
   return (
     <>
       <BackgroundHeading />
@@ -33,6 +46,9 @@ function App() {
         <Sidebar
           handleAddItem={handleAddItem}
           markAllAsPacked={markAllAsPacked}
+          handleRemoveAllItems={handleRemoveAllItems}
+          handlemarkAllAsUnPacked={handlemarkAllAsUnPacked}
+          handleResetToInitial={handleResetToInitial}
         />
       </main>
       <Footer />

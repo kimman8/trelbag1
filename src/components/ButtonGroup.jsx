@@ -1,36 +1,25 @@
 import Button from './Button';
-import { secondaryButtons } from '../lib/constants';
 
-export default function ButtonGroup({ markAllAsPacked }) {
-  const handleButtonClick = (button) => {
-    switch (button) {
-      case 'Mark all as complete':
-        markAllAsPacked();
-        break;
-      case 'Mark all as incomplete':
-        console.log('Mark all as incomplete');
-        break;
-      case 'Reset to initial':
-        console.log('Reset to initial');
-        break;
-      case 'Remove all items':
-        console.log('Remove all items');
-        break;
-      default:
-        console.log('Unknown button');
-    }
-  };
+export default function ButtonGroup({
+  markAllAsPacked,
+  handleRemoveAllItems,
+  handlemarkAllAsUnPacked,
+  handleResetToInitial,
+}) {
   return (
     <section className="button-group">
-      {secondaryButtons.map((button) => (
-        <Button
-          key={button}
-          type={'secondary'}
-          onClick={() => handleButtonClick(button)}
-        >
-          {button}
-        </Button>
-      ))}
+      <Button buttonType="secondary" onClick={markAllAsPacked}>
+        Mark all as complete
+      </Button>
+      <Button buttonType="secondary" onClick={handlemarkAllAsUnPacked}>
+        Mark all as incomplete
+      </Button>
+      <Button buttonType="secondary" onClick={handleResetToInitial}>
+        Reset to initial
+      </Button>
+      <Button buttonType="secondary" onClick={handleRemoveAllItems}>
+        Remove all items
+      </Button>
     </section>
   );
 }
