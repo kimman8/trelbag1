@@ -117,6 +117,16 @@ header {
   padding: 0 28px;
 }
 
+.sidebar {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  background-color: #fbf5ed;
+  border-left: 1px solid rgba(0, 0, 0, 0.07);
+  padding: 18px 25px 28px;
+  display: flex;
+  flex-direction: column;
+}
+
 label > span {
   color: #34495e;
   padding: 0.5rem 0.25rem;
