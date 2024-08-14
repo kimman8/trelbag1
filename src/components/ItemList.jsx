@@ -3,7 +3,7 @@ import EmptyView from './EmptyView';
 export default function ItemList({
   items,
   handlePackedToggle,
-  handleRemovedToggle,
+  handleRemoveItem,
 }) {
   return (
     <ul className="item-list">
@@ -13,7 +13,7 @@ export default function ItemList({
         <Item
           key={item.id}
           item={item}
-          onRemoveItem={handleRemovedToggle}
+          onRemoveItem={handleRemoveItem}
           onPackedToggle={handlePackedToggle}
         />
       ))}
