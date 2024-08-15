@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BackgroundHeading from './BackgroundHeading';
 import Footer from './Footer';
 import Header from './Header';
@@ -7,7 +7,14 @@ import Sidebar from './Sidebar';
 import { initialItems } from '../lib/constants';
 
 function App() {
-  const [items, setItems] = useState(initialItems);
+  // Retrieve items from localStorage or fall back to initialItems
+  const savedItems = JSON.parse(localStorage.getItem('items'));
+  const [items, setItems] = useState(savedItems || initialItems);
+
+  // Save items to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('items', JSON.stringify(items));
+  }, [items]);
 
   const handleAddItem = (newItemText) => {
     const newItem = {
