@@ -1,11 +1,14 @@
+import { useContext } from 'react';
 import Button from './Button';
+import { ItemsContext } from '../contexts/ItemsContextProvider';
 
-export default function ButtonGroup({
-  markAllAsPacked,
-  handleRemoveAllItems,
-  handlemarkAllAsUnPacked,
-  handleResetToInitial,
-}) {
+export default function ButtonGroup() {
+  const {
+    markAllAsPacked,
+    handlemarkAllAsUnPacked,
+    handleResetToInitial,
+    handleRemoveAllItems,
+  } = useContext(ItemsContext);
   const secondaryButtons = [
     { text: 'Mark all as complete', onClick: markAllAsPacked },
     { text: 'Mark all as incomplete', onClick: handlemarkAllAsUnPacked },
