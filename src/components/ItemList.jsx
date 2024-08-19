@@ -12,9 +12,9 @@ export default function ItemList({
     { value: 'unpacked', label: 'Sort by unpacked' },
   ];
   const [sortBy, setSortBy] = useState('default');
-  const sortedItems = useMemo(() => {
-    return [...items].sort(
-      (a, b) => {
+  const sortedItems = useMemo(
+    () =>
+      [...items].sort((a, b) => {
         if (sortBy === 'packed') {
           return b.packed - a.packed;
         }
@@ -22,10 +22,9 @@ export default function ItemList({
           return a.packed - b.packed;
         }
         return;
-      },
-      [items, sortBy]
-    );
-  });
+      }),
+    [items, sortBy]
+  );
 
   return (
     <ul className="item-list">
