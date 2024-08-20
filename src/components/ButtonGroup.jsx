@@ -1,31 +1,25 @@
-import { useContext } from 'react';
+import { useItemsStore } from '../store/itemsStore';
 import Button from './Button';
-import { ItemsContext } from '../contexts/ItemsContextProvider';
 
 export default function ButtonGroup() {
-  const {
-    markAllAsPacked,
-    handlemarkAllAsUnPacked,
-    handleResetToInitial,
-    handleRemoveAllItems,
-  } = useContext(ItemsContext);
-  const secondaryButtons = [
-    { text: 'Mark all as complete', onClick: markAllAsPacked },
-    { text: 'Mark all as incomplete', onClick: handlemarkAllAsUnPacked },
-    { text: 'Reset to initial', onClick: handleResetToInitial },
-    { text: 'Remove all items', onClick: handleRemoveAllItems },
-  ];
+  const markAllAsPacked = useItemsStore((state) => state.markAllAsPacked);
+  const markAllAsUnPacked = useItemsStore((state) => state.markAllAsUnPacked);
+  const resetToInitial = useItemsStore((state) => state.resetToInitial);
+  const removeAllItems = useItemsStore((state) => state.removeAllItems);
   return (
     <section className="button-group">
-      {secondaryButtons.map(({ text, onClick }) => (
-        <Button
-          key={text + onClick.toString()}
-          buttonType="secondary"
-          onClick={onClick}
-        >
-          {text}
-        </Button>
-      ))}
+      <Button buttonType="secondary" onClick={markAllAsPacked}>
+        Mark all as complete
+      </Button>
+      <Button buttonType="secondary" onClick={markAllAsUnPacked}>
+        Mark all as incomplete
+      </Button>
+      <Button buttonType="secondary" onClick={resetToInitial}>
+        Reset to initial
+      </Button>
+      <Button buttonType="secondary" onClick={removeAllItems}>
+        Remove all items
+      </Button>
     </section>
   );
 }
